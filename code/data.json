@@ -1,0 +1,4 @@
+{
+    "prompt": "Convert the following test case into a Gherkin Cucumber scenario:\n\nGIVEN I have a gas contract\nAND it has two valid meter reads with thermal properties\nAND EE gpke.degreeDaysPlus.value = 0\nAND I let the system estimate a third meter read\nAND the outcome can be validated positively with the Excel attached\nWHEN I set EE gpke.degreeDaysPlus.value = X (other than 0)\nAND I let the system estimate the third meter read again\nTHEN the results differ by the value X\n\nPlease write the scenario in a way that includes background, scenario outline, and examples where appropriate."
+}
+  
