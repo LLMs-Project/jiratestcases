@@ -1,0 +1,8 @@
+GIVEN I have a gas contract
+AND it has two valid meter reads with thermal properties
+AND EE gpke.degreeDaysPlus.value = 0
+AND I let the system estimate a third meter read
+AND the outcome can be validated positively with the Excel attached
+WHEN I set EE gpke.degreeDaysPlus.value = X (other than 0)
+AND I let the system estimate the third meter read again
+THEN the results differ by the value X
