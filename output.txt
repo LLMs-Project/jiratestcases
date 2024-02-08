@@ -1,0 +1,18 @@
+Feature: Gas contract estimation
+Background:
+  Given I have a gas contract
+  And it has two valid meter reads with thermal properties
+  And EE gpke.degreeDaysPlus.value = 0
+
+Scenario Outline: Estimate third meter read with different degreeDaysPlus value
+  Given I let the system estimate a third meter read
+  And the outcome can be validated positively with the Excel attached
+  When I set EE gpke.degreeDaysPlus.value = <value>
+  And I let the system estimate the third meter read again
+  Then the results differ by the value <value>
+
+Examples:
+  | value |
+  | 10    |
+  | -5    |
+  | 20    |
