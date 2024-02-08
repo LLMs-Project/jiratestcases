@@ -10,10 +10,8 @@ def query_openai_chat_api(prompt):
     """Sends a prompt to the OpenAI API using the `v1/chat/completions` endpoint and returns the response."""
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Adjust to the correct chat model you have access to
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
+            model="gpt-3.5-turbo-0125",  # Adjust to the correct chat model you have access to
+            messages=[{"role": "user", "content": prompt}],
             max_tokens=150  # Set the maximum number of tokens to generate
         )
         return response
@@ -40,14 +38,10 @@ def main():
     response = query_openai_chat_api(test_case_prompt)
     
     if response:
-        messages = response.get('messages', [])
-        if messages:
-            # Assuming the last message is the completion
-            scenario_text = messages[-1].get('content', '')
-            print("Generated Cucumber Scenario:")
-            print(scenario_text)
-        else:
-            print("No messages returned in the response.")
+        # Extract the scenario text from the first (and only) choice's message content
+        scenario_text = response['choices'][0]['message']['content']
+        print("Generated Cucumber Scenario:")
+        print(scenario_text)
     else:
         print("No response was returned from the API.")
 
